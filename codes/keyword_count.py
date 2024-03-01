@@ -26,7 +26,7 @@ for file_path in file_paths:
                 if keyword != "":
                     keyword = keyword.split(';')
                     for word in keyword:
-                        word = word.strip() # .lower() to avoid same keywords but with different upper/lower characters
+                        word = word.strip().lower() # .lower() to avoid same keywords but with different upper/lower characters
                         keywords.add(word)
                         # if word in keyword_count, increase keyword_count[word] by one
                         # else, set keyword_count[word] to one
