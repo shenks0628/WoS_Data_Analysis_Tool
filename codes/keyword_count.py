@@ -42,6 +42,6 @@ for file_path in file_paths:
 # sort the dictionary with it's value in descending order
 sorted_keywords = sorted(keyword_count.items(), key=lambda x: x[1], reverse=True)
 #year.sort()
-with open('year.txt', 'w') as file:
+with open('output.txt', 'w') as file:
     for key, value in sorted_keywords:
         print(f"{key}({value})", file=file)   
