@@ -1,7 +1,6 @@
 case\ reading\ papers/
 meeting\ slides/
 TrendAnalyzer/
-presentation*
 
 .DS_Store
 codes/.vscode
