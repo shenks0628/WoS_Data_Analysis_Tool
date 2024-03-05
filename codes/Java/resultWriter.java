@@ -16,6 +16,18 @@ public class resultWriter {
 
     public resultWriter(String fileName) {
         this.fileName = fileName;
+        clearFile();
+    }
+
+    public void clearFile() {
+        try {
+            FileWriter fw = new FileWriter(fileName);
+            fw.write("");
+            fw.flush();
+            fw.close();
+        } catch (IOException e) {
+
+        }
     }
 
     public void addYear(int year, Map<String, Integer> keywords) {

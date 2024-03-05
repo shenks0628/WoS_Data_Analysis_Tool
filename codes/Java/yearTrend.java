@@ -2,6 +2,8 @@
 進到Java資料夾後
 編譯指令
 javac -encoding utf-8 -d . *.java
+執行指令
+java parser.yearTrend.yearTrend
 */
 package parser.yearTrend;
 
@@ -17,7 +19,7 @@ public class yearTrend {
         resultWriter writer = new resultWriter("result.txt");
         for (int i = 1; i <= 27; i++) {
             reader.setFileName("../autonomous_vehicle_data_records/" + Integer.toString(i) + ".txt");
-            System.out.println("../autonomous_vehicle_data_records/" + Integer.toString(i) + ".txt");
+            System.out.println("Writing... ../autonomous_vehicle_data_records/" + Integer.toString(i) + ".txt");
             reader.readPY();
         }
         Map<Integer, Map<String, Integer>> PY = reader.getList();
