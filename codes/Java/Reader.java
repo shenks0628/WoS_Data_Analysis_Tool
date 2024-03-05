@@ -13,14 +13,23 @@ import java.util.Scanner;
 public class Reader {
     private Scanner input;
     private String fileName; // target file name
+    private Map<Integer, Map<String, Integer>> list;
 
     public Reader(String fileName) {
+        list = new HashMap<>();
         this.fileName = fileName;
     }
 
-    public Map<Integer, Map<String, Integer>> readPY() {
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public Map<Integer, Map<String, Integer>> getList() {
+        return list;
+    }
+
+    public void readPY() {
         openFile();
-        Map<Integer, Map<String, Integer>> list = new HashMap<>();
         try {
             if (input.hasNextLine()) {
                 String inputFirst = input.nextLine();
@@ -32,7 +41,20 @@ public class Reader {
                     if (type.startsWith("PY")) {
                         try {
                             int year = Integer.parseInt(text);
-                            list.put(year, keywords);
+                            if (list.containsKey(year)) {
+                                Map<String, Integer> old = list.get(year);
+                                for (Map.Entry<String, Integer> keyword : keywords.entrySet()) {
+                                    if (old.containsKey(keyword.getKey())) {
+                                        old.replace(keyword.getKey(), old.get(keyword.getKey()) + keyword.getValue());
+                                    } else {
+                                        old.put(keyword.getKey(), keyword.getValue());
+                                    }
+                                }
+                                list.replace(year, old);
+                            } else {
+                                list.put(year, keywords);
+                            }
+                            keywords = new HashMap<>();
                         } catch (NumberFormatException e) {
                             System.out.println(e);
                         }
@@ -65,7 +87,6 @@ public class Reader {
             System.err.println("Error reading from file. Terminating.");
         }
         closeFile();
-        return list;
     }
 
     public void openFile() {
