@@ -8,12 +8,10 @@ coun = dict()
 x=1995
 y=3
 z=0
-#yearplt是圖的x軸
-yearplt=[]
-#lisa是y軸
-lisa=[]
-file_paths = [f"{i}.txt" for i in range(1, 28)]
-s="path planning"
+x_axis=[]
+y_axis=[]
+file_paths = glob.glob(os.path.join("autonomous_vehicle_data_records", "*.txt"))
+s="object detection"
 # iterate through each file
 for file_path in file_paths:
     with open(file_path, 'r', encoding="utf-8") as file:
@@ -52,14 +50,13 @@ for file_path in file_paths:
                 insideDE = False
 # sort the dictionary with it's value in descending order
 while x<=2024:
-    yearplt.append(x)
+    x_axis.append(x)
     x+=y
-lisa=[0] * 10
+y_axis=[0] * 10
 for k, v in coun.items():
-    lisa[k]=v    
-for value in coun:
-    print(value)
-plt.bar(yearplt, lisa)
-plt.yticks(range(0, max(lisa)+25, 25))
+    y_axis[k]=v    
+plt.bar(x_axis, y_axis)
+plt.title(s)
+plt.yticks(range(0, max(y_axis)+25, 25))
 plt.show()
 
