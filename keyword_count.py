@@ -1,8 +1,9 @@
 import os
 import glob
+
 keywords = set()
 keyword_count = dict()
-ye=[]
+
 file_paths = glob.glob(os.path.join("autonomous_vehicle_data_records", "*.txt"))
 
 # iterate through each file
@@ -20,8 +21,6 @@ for file_path in file_paths:
             # contents inside the DE tag
             elif line.startswith("   ") and insideDE:
                 keyword += line[3:].strip()
-            # elif line.startswith("PY ") and insideDE:
-                #year.append(int(line[3:].strip()))
             else:
                 # add each keyword into the set and dictionary
                 if keyword != "":
@@ -41,7 +40,7 @@ for file_path in file_paths:
 
 # sort the dictionary with it's value in descending order
 sorted_keywords = sorted(keyword_count.items(), key=lambda x: x[1], reverse=True)
-#year.sort()
+
 with open('output.txt', 'w') as file:
     for key, value in sorted_keywords:
-        print(f"{key}({value})", file=file)   
+        print(f"{key}({value})", file=file)
