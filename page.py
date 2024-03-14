@@ -52,11 +52,10 @@ for file_path in file_paths:
 while x<=2024:
     x_axis.append(x)
     x+=y
-y_axis=[0] * 10
+y_axis=[0] * len(x_axis)
 for k, v in coun.items():
     y_axis[k]=v    
 plt.bar(x_axis, y_axis)
 plt.title(s)
 plt.yticks(range(0, max(y_axis)+25, 25))
 plt.show()
-
