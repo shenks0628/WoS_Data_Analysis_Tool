@@ -19,7 +19,7 @@ for file_path in file_paths:
         insideTI = False
         # iterate through each line
         for line in file:
-            # starts of a author
+            # starts of an author
             if line.startswith("AF "):
                 insideAF = True
                 author.append(line[3:].strip())
