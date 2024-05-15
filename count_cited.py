@@ -15,11 +15,11 @@ for file_path in file_paths:
         insideTI = False
         # iterate through each line
         for line in file:
-            # starts of keywords
+ 
             if line.startswith("TI "):
                 insideTI = True
                 ti += line[3:].strip()
-            # contents inside the DE tag
+
             elif line.startswith("   ") and insideTI:
                 ti += line[3:].strip()
             elif line.startswith("SO "):
@@ -32,7 +32,7 @@ for file_path in file_paths:
                         cited_count[ti] += cnt
                     else:
                         cited_count[ti] = cnt
-                # re-initialize keyword and insideDE
+
                 ti = ""
                 cnt = 0
                 insideTI = False
