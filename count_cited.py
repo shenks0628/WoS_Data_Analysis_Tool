@@ -49,4 +49,4 @@ sorted_TI = sorted(cited_count.items(), key=lambda x: x[1]["cited"], reverse=Tru
 
 with open('output_cited.txt', 'w') as file:
     for key, value in sorted_TI:
-        print(f"{key}(Cited count:{value.get('cited')})(Position in {value.get('pos')})", file=file)
+        print(f"{key}(Cited count:{value.get('cited')})({value.get('pos')})", file=file)
