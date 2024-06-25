@@ -34,7 +34,7 @@ for file_path in file_paths:
                 ti += line[3:].strip()
             elif line.startswith("SO "):
                 insideTI = False
-            elif line.startswith("Z9 "):
+            if line.startswith("Z9 "):
                 if ti != "":
                     if reference_count.get(ti, False):
                         reference_count[ti]["reference"] += cnt
