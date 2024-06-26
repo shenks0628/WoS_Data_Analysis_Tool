@@ -56,6 +56,15 @@ for file_path in file_paths:
 # sort the dictionary with it's value in descending order
 sorted_reference = sorted(reference_count.items(), key=lambda x: x[1]["count"], reverse=True)
 
+# results = []
+# for item in sorted_reference:
+#     results.append({
+#         "title": item[1]["title"],
+#         "author": item[1]["author"],
+#         "count": item[1]["count"]
+#     })
+
 with open('output_reference.txt', 'w') as file:
+    # print(results, file=file)
     for key, value in sorted_reference:
         print(f"{key}(Reference count:{value.get('count')})({value.get('author')})", file=file)
