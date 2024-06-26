@@ -35,14 +35,18 @@ for file_path in file_paths:
             elif line.startswith("SO "):
                 insideTI = False
             if line.startswith("Z9 "):
+                cnt = int(line[3:].strip())
                 if ti != "":
                     if reference_count.get(ti, False):
-                        reference_count[ti]["reference"] += cnt
+                        reference_count[ti]["count"] += cnt
+                        reference_count[ti]["author"] = author
                     else:
                         TI.add(ti)
                         reference_count[ti] = dict()
-                        reference_count[ti]["reference"] = cnt
+                        reference_count[ti]["title"] = ti
                         reference_count[ti]["author"] = author
+                        reference_count[ti]["count"] = cnt
+                        
 
                 ti = ""
                 author = []
@@ -50,8 +54,8 @@ for file_path in file_paths:
                 insideTI = False
 
 # sort the dictionary with it's value in descending order
-sorted_reference = sorted(reference_count.items(), key=lambda x: x[1]["reference"], reverse=True)
+sorted_reference = sorted(reference_count.items(), key=lambda x: x[1]["count"], reverse=True)
 
 with open('output_reference.txt', 'w') as file:
     for key, value in sorted_reference:
-        print(f"{key}(Reference count:{value.get('reference')})({value.get('author')})", file=file)
+        print(f"{key}(Reference count:{value.get('count')})({value.get('author')})", file=file)
